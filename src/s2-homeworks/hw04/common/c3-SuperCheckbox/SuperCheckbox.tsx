@@ -27,6 +27,20 @@ const SuperCheckbox: React.FC<SuperCheckboxPropsType> = (
     }
 ) => {
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
+
+if (id === "hw4-super-checkbox-with-text"){
+     onChangeChecked?.(e.currentTarget.checked)
+}
+
+if (id==="hw4-super-checkbox-like-old"){
+    onChange?.(e)
+}
+
+
+
+
+
+
         // задачка на написание онченджа
 
     }
