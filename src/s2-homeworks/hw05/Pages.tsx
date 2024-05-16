@@ -9,6 +9,7 @@ export const PATH = {
     PRE_JUNIOR: '/pre-junior',
     JUNIOR: '/junior',
     JUNIOR_PLUS: '/junior-plus',
+    PRE_JUNIORs: '/pre-junior*/',
 }
 
 function Pages() {
@@ -18,7 +19,7 @@ function Pages() {
             <Routes>
                 {/*роутинг будут писать студенты*/}
                 {/*в начале мы попадаем на страницу '/' и переходим сразу на страницу /pre-junior*/}
-                <Route path={PATH.PRE_JUNIOR} element={ <PreJunior/>}/>
+                <Route  path="/" element={ <PreJunior/>}/>
 
                 {/*роуты для /pre-junior, /junior, /junior-plus*/}
                 <Route path={PATH.PRE_JUNIOR} element={ <PreJunior/>}/>
