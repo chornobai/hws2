@@ -9,7 +9,7 @@ function Clock() {
     const [timerId, setTimerId] = useState<number | undefined>(undefined)
     // for autotests // не менять // можно подсунуть в локалСторэдж нужную дату, чтоб увидеть как она отображается
     const [date, setDate] = useState<Date>(new Date(restoreState('hw9-date', Date.now())))
-    const[disabled, setDisabled]= useState(false)
+
     const [show, setShow] = useState<boolean>(false)
 
 
@@ -52,7 +52,7 @@ const months= [
 
 
     const stringTime =  date.toLocaleTimeString()
-    const stringDate = date.toLocaleDateString() || <br/> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
+    const stringDate = date.toLocaleDateString('ru-RU') || <br/> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
 
     // день недели на английском, месяц на английском (https://learn.javascript.ru/intl#intl-datetimeformat)
     const stringDay = days[date.getDay()] || <br/> // пишут студенты
