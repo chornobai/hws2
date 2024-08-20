@@ -49,10 +49,9 @@ const months= [
         "August", "September", "October", "November", "December"
     ]
 
-    // const get2Digits = (num: number) => (num < 10 ? "0" + num : num);
-    // const stringTime =  `${get2Digits(date.getHours())}:${get2Digits(date.getMinutes())}`;
 
-     const stringTime =  date.toLocaleTimeString().slice(0,-3);
+
+    const stringTime =  date.toLocaleTimeString().slice(0,-3);
     const stringDate = date.toLocaleDateString() || <br/> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
 
     // день недели на английском, месяц на английском (https://learn.javascript.ru/intl#intl-datetimeformat)
