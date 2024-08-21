@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {AppStoreType} from './bll/store'
 import {loadingAC} from './bll/loadingReducer'
@@ -14,13 +14,15 @@ import {Loader} from './Loader'
 * */
 
 const HW10 = () => {
+  const  dispatch = useDispatch()
     // useSelector, useDispatch // пишет студент
-    const isLoading = false
+    const isLoading = useSelector<AppStoreType,boolean>(state => state.loading.isLoading)
 
     const setLoading = () => { // пишет студент // показать крутилку на 1,5 секунд
-        // dispatch
-
-        // setTimeout
+        dispatch(loadingAC(true))
+        setTimeout(() => {
+            dispatch(loadingAC(false)) // Отключаем загрузку через 1.5 секунды
+        }, 1500)
     }
 
     return (
@@ -40,6 +42,7 @@ const HW10 = () => {
                         Set loading...
                     </SuperButton>
                 )}
+
             </div>
         </div>
     )
