@@ -4,19 +4,21 @@ import s2 from '../../s1-main/App.module.css'
 import { restoreState } from '../hw06/localStorage/localStorage'
 import SuperRange from './common/c7-SuperRange/SuperRange'
 
-/*
-* 1 - передать значения в оба слайдера
-* 2 - дописать типы и логику функции change
-* 3 - сделать стили в соответствии с дизайном
-* */
-
 function HW11() {
-    // for autotests // не менять // можно подсунуть в локалСторэдж нужные числа, чтоб увидеть как они отображаются
+    // Initialize state with values from localStorage
     const [value1, setValue1] = useState(restoreState<number>('hw11-value1', 0))
     const [value2, setValue2] = useState(restoreState<number>('hw11-value2', 100))
 
-    const change = (event: any, value: any) => {
-        // пишет студент // если пришёл массив - сохранить значения в оба useState, иначе в первый
+    const change = (event: Event, value: number | number[]) => {
+        // Check if the value is an array (for double slider) or a single number (for single slider)
+        if (Array.isArray(value)) {
+            // If it's an array, update both values
+            setValue1(value[0])
+            setValue2(value[1])
+        } else {
+            // If it's a single value, update the first value only
+            setValue1(value)
+        }
     }
 
     return (
@@ -29,16 +31,16 @@ function HW11() {
                         <span id={'hw11-value'} className={s.number}>{value1}</span>
                         <SuperRange
                             id={'hw11-single-slider'}
-                            // сделать так чтоб value1 изменялось // пишет студент
-
+                            value={value1}
+                            onChange={change} // Pass the change handler
                         />
                     </div>
                     <div className={s.wrapper}>
                         <span id={'hw11-value-1'} className={s.number}>{value1}</span>
                         <SuperRange
                             id={'hw11-double-slider'}
-                            // сделать так чтоб value1/2 изменялось // пишет студент
-
+                            value={[value1, value2]}
+                            onChange={change} // Pass the change handler
                         />
                         <span id={'hw11-value-2'} className={s.number}>{value2}</span>
                     </div>
