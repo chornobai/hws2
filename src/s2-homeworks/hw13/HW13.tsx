@@ -19,6 +19,8 @@ const HW13 = () => {
     const [text, setText] = useState('')
     const [info, setInfo] = useState('')
     const [image, setImage] = useState('')
+    const [disabled, setDisabled] = useState(false)
+
 
     const send = (x?: boolean | null) => () => {
         const url =
@@ -30,18 +32,18 @@ const HW13 = () => {
         setImage('')
         setText('')
         setInfo('...loading')
-
+setDisabled(true)
         axios
             .post(url, {success: x})
             .then((res) => {
                 setCode('Код 200!')
                 setImage(success200)
-               setText(res.data.info)
-
+                setText(res.data.info)
+                setDisabled(false)
             })
             .catch((e) => {
-setInfo(e.response.data.errorText)
-
+                setInfo(e.response.data.errorText)
+                setDisabled(false)
             })
     }
 
@@ -55,7 +57,7 @@ setInfo(e.response.data.errorText)
                         id={'hw13-send-true'}
                         onClick={send(true)}
                         xType={'secondary'}
-                     
+disabled={disabled}
 
                     >
                         Send true
@@ -64,7 +66,7 @@ setInfo(e.response.data.errorText)
                         id={'hw13-send-false'}
                         onClick={send(false)}
                         xType={'secondary'}
-                        // дописать
+                        disabled={disabled}
 
                     >
                         Send false
@@ -73,7 +75,7 @@ setInfo(e.response.data.errorText)
                         id={'hw13-send-undefined'}
                         onClick={send(undefined)}
                         xType={'secondary'}
-                        // дописать
+                        disabled={disabled}
 
                     >
                         Send undefined
@@ -82,7 +84,7 @@ setInfo(e.response.data.errorText)
                         id={'hw13-send-null'}
                         onClick={send(null)} // имитация запроса на не корректный адрес
                         xType={'secondary'}
-                        // дописать
+                        disabled={disabled}
 
                     >
                         Send null
