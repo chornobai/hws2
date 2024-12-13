@@ -36,11 +36,11 @@ const HW13 = () => {
             .then((res) => {
                 setCode('Код 200!')
                 setImage(success200)
-                // дописать
+               setText(res.data.info)
 
             })
             .catch((e) => {
-                // дописать
+setInfo(e.response.data.errorText)
 
             })
     }
@@ -55,7 +55,7 @@ const HW13 = () => {
                         id={'hw13-send-true'}
                         onClick={send(true)}
                         xType={'secondary'}
-                        // дописать
+                     
 
                     >
                         Send true
