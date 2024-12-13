@@ -40,6 +40,7 @@ setDisabled(true)
                 setImage(success200)
                 setText(res.data.info)
                 setDisabled(false)
+                setInfo(res.data.errorText)
             })
             .catch((e) => {
                 setInfo(e.response.data.errorText)
