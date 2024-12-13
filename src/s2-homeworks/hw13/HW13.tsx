@@ -43,8 +43,30 @@ setDisabled(true)
                 setInfo(res.data.info)
             })
             .catch((e) => {
-                setInfo(e.response.data.errorText)
-                setDisabled(false)
+                // Проверка статуса ошибки
+                if (e.response) {
+                    const status = e.response.status
+                    if (status === 400) {
+                        setCode('400')
+                        setImage(error400)
+                    } else if (status === 500) {
+                        setCode('500')
+                        setImage(error500)
+                    } else {
+                        setCode(status)
+                        setImage(errorUnknown)
+                    }
+                    setText(e.response.data.errorText)
+                    setInfo(e.response.data.info || 'Unknown error')
+                } else {
+                    setCode('Ошибка неизвестна')
+                    setImage(errorUnknown)
+                    setText('Something went wrong')
+                    setInfo('No response from server')
+                }
+            })
+            .finally(() => {
+                setDisabled(false) // Разблокируем кнопки после завершения запроса
             })
     }
 
