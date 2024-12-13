@@ -38,9 +38,9 @@ setDisabled(true)
             .then((res) => {
                 setCode('Код 200!')
                 setImage(success200)
-                setText(res.data.info)
+                setText(res.data.errorText)
                 setDisabled(false)
-                setInfo(res.data.errorText)
+                setInfo(res.data.info)
             })
             .catch((e) => {
                 setInfo(e.response.data.errorText)
