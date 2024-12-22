@@ -8,18 +8,43 @@
 
 .techHeader {
     width: 50vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: lightgray;
+span {
+    display: flex;
+    align-items: flex-end;
+    margin: 2px;
+    cursor: pointer;
+    padding:10px;
+
+}
 }
 
 .developerHeader {
-
+    width: 50vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: gray;
+    span {
+        display: flex;
+        align-items: flex-end;
+        margin: 2px;
+        cursor: pointer;
+        padding:10px;
+    }
 }
 
 .row {
     display: flex;
+    border-bottom: 1px solid gray;
 }
 
 .rowHeader {
     display: flex;
+    border-bottom: 1px solid gray;
 }
 
 .loading {

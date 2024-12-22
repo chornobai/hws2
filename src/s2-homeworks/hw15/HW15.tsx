@@ -47,47 +47,44 @@ const HW15 = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [techs, setTechs] = useState<TechType[]>([])
 
+console.log(count, page)
     const sendQuery = (params: any) => {
-        setLoading(true)
+        setLoading(true);
         getTechs(params)
             .then((res) => {
-                // делает студент
-
-                // сохранить пришедшие данные
-
-                //
+                if (res?.data) {
+                    setTechs(res.data.techs);
+                    setTotalCount(res.data.totalCount);
+                }
             })
+            .finally(() => setLoading(false));
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
-        // делает студент
 
-        // setPage(
-        // setCount(
+        setPage(newPage);
+        setCount(newCount);
 
-        // sendQuery(
-        // setSearchParams(
-
-        //
-    }
+        const params = { page: newPage.toString(), count: newCount.toString(), sort };
+        sendQuery(params);
+        setSearchParams(params);
+    };
 
     const onChangeSort = (newSort: string) => {
-        // делает студент
+        setSort(newSort);
+        setPage(1); // при сортировке сбрасывать на 1 страницу
 
-        // setSort(
-        // setPage(1) // при сортировке сбрасывать на 1 страницу
-
-        // sendQuery(
-        // setSearchParams(
-
-        //
-    }
-
+        const params = { page: '1', count: count.toString(), sort: newSort };
+        sendQuery(params);
+        setSearchParams(params);
+    };
+console.log(count)
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
         sendQuery({page: params.page, count: params.count})
         setPage(+params.page || 1)
         setCount(+params.count || 4)
+
     }, [])
 
     const mappedTechs = techs.map(t => (
@@ -115,6 +112,7 @@ const HW15 = () => {
                     totalCount={totalCount}
                     onChange={onChangePagination}
                 />
+
 
                 <div className={s.rowHeader}>
                     <div className={s.techHeader}>

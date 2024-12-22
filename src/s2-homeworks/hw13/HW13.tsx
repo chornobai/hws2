@@ -57,8 +57,8 @@ setDisabled(true)
                         setImage(errorUnknown)
                         setText( "Error")
                     }
-                    setText(e.response.data.errorText || "Error")
-                    setInfo(e.response.data.info || 'Unknown error')
+                    setText(e.response.data?.errorText || "Error")
+                    setInfo(e.response.data?.info || "Error")
                 } else {
                     setCode('Ошибка неизвестна')
                     setImage(errorUnknown)
